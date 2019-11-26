@@ -2107,6 +2107,49 @@ function readSenior() {
     $('#btn_add_seniors').attr('name', 'update');
     $('#uploadForm')[0].reset();
     senior_id_glob = dataTableSenior.row($(this).parents('tr')).data()["id"];
+
+    $('html, body').animate({
+        scrollTop: $( $(this).attr('href') ).offset().top
+    }, 500, function() {
+      setTimeout(
+        function() 
+        {
+          $.ajax({
+            url: 'api/senior/read_single.php',
+            type: 'POST',
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({ id: senior_id_glob }),
+            success: function (data) {
+              $('#id').val(data[0].id);
+              $('#full_name').val(data[0].full_name);
+              $('#contact_number').val(data[0].contact_number);
+              $('#address').val(data[0].address);
+              $('#gender').val(data[0].gender).change();
+              $('#dob').val(data[0].dob);
+              $('#age').val(data[0].age);
+              $('#occupation').val(data[0].occupation);
+              $('#civil_status').val(data[0].civil_status).change();
+              $('#brgy').val(data[0].brgy);
+              $('#blood_type').val(data[0].blood_type).change();
+              $('#emer_name').val(data[0].emer_name);
+              $('#emer_relationship').val(data[0].emer_relationship);
+              $('#emer_address').val(data[0].emer_address);
+              $('#emer_contact_number').val(data[0].emer_contact_number);
+              $('#status').val(data[0].status).change();
+              $('#exampleModalUpdateSenior').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+          });
+        }, 300);
+    });
+    return false;
+  });
+
+  $("#dataTableSenior").on("click", ".btn-print-senior", function(e) {
+    $('#btn_add_seniors').attr('name', 'update');
+    $('#uploadForm')[0].reset();
+    senior_id_glob = dataTableSenior.row($(this).parents('tr')).data()["id"];
     $.ajax({
       url: 'api/senior/read_single.php',
       type: 'POST',
@@ -2115,6 +2158,7 @@ function readSenior() {
       data: JSON.stringify({ id: senior_id_glob }),
       success: function (data) {
         $('#id').val(data[0].id);
+        $('#image_path').val(data[0].image);
         $('#full_name').val(data[0].full_name);
         $('#contact_number').val(data[0].contact_number);
         $('#address').val(data[0].address);
@@ -2131,14 +2175,15 @@ function readSenior() {
         $('#emer_contact_number').val(data[0].emer_contact_number);
         $('#status').val(data[0].status).change();
         $('#exampleModalUpdateSenior').modal('show');
+
+
+        $.post('export.php', { full_name: $('#full_name').val(), contact_number: $('#contact_number').val(), image: $('#image_path').val(), brgy: $('#brgy').val(), dob: $('#dob').val(), blood_type: $('#blood_type').val(), emer_name: $('#emer_name').val(), emer_relationship: $('#emer_relationship').val(), emer_address: $('#emer_address').val(), emer_contact_number: $('#emer_contact_number').val() }, function(returnedData) {
+          // do something here with the returnedData
+          console.log(returnedData);
+      });
       },
       error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
     });
-
-    $('html, body').animate({
-        scrollTop: $( $(this).attr('href') ).offset().top
-    }, 500);
-    return false;
   });
 
   $("#dataTableSenior").on("click", ".btn-delete-senior", function(e) {

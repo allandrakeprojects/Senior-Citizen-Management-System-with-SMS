@@ -23,6 +23,7 @@
 
       $senior_item = array(
         'id' => $id,
+        'image' => 'images/senior/'.$image.'',
         'full_name' => $full_name,
         'contact_number' => $contact_number,
         'address' => $address,

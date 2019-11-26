@@ -71,7 +71,8 @@
                                         <form method="POST" id="uploadForm" action="upload.php" enctype="multipart/form-data">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <input type="hidden" class="form-control" name="id" id="id">
+                                                        <input type="hidden" class="form-control" name="id" id="id">
+                                                        <input type="hidden" class="form-control" name="image_path" id="image_path">
                                                         <div class="form-group" style="margin-bottom: 10px;">
                                                             <label for="full_name" class="col-form-label" style="padding-bottom: 0">Name:</label>
                                                             <input type="text" class="form-control" name="full_name" id="full_name">
@@ -98,14 +99,14 @@
                                                         <div class="form-group" style="margin-bottom: 10px;">
                                                             <label for="blood_type" class="col-form-label" style="padding-bottom: 0">Blood Type:</label>
                                                             <select class="form-control" name="blood_type" id="blood_type">
-                                                                <option value="0">A-positive</option>
-                                                                <option value="1">A-negative</option>
-                                                                <option value="2">B-positive</option>
-                                                                <option value="3">B-negative</option>
-                                                                <option value="4">AB-positive</option>
-                                                                <option value="5">AB-negative</option>
-                                                                <option value="6">O-positive</option>
-                                                                <option value="7">O-negative</option>
+                                                                <option value="0">A+</option>
+                                                                <option value="1">A-</option>
+                                                                <option value="2">B+</option>
+                                                                <option value="3">B-</option>
+                                                                <option value="4">AB+</option>
+                                                                <option value="5">AB-</option>
+                                                                <option value="6">O+</option>
+                                                                <option value="7">O-</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group" style="margin-bottom: 10px;">
