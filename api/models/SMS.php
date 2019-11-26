@@ -7,7 +7,7 @@
     public function send() {
         $this->message = htmlspecialchars(strip_tags($this->message));
         $this->number = htmlspecialchars(strip_tags($this->number));
-        $this->api_code = 'TR-SENIO147185_UPDMP';
+        $this->api_code = 'ST-SENIO147185_H9QJZ';
 
         $url = 'https://www.itexmo.com/php_api/api.php';
         $itexmo = array('1' => $this->number, '2' => $this->message, '3' => $this->api_code);
